@@ -10,19 +10,14 @@ public:
        sum+=nums[i];
        int left=0;
 
-
        for(i=0;i<n;i++)
        {
            int right=sum-left-nums[i];
            if(left==right)
            return i;
 
-
            left=left+nums[i];
        }
        return -1;
-
-
-   }
-
+    }
 };

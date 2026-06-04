@@ -1,28 +1,28 @@
 class Solution {
 public:
-    int totalWaviness(int num1, int num2) {
-        int waviness = 0;
+    int findWaiveScore(int num) {
+        string s = to_string(num);
+        int l = s.length();
+        if(l<3)
+            return 0;
+        int score = 0;
+        for(int i = 1;i<=l-2;i++){
+            //peak
+            if(s[i]>s[i-1] && s[i] > s[i+1]) score++;
 
-        for(int num = num1; num<=num2;num++){
-            int nextnext = -1;
-            int next = -1;
-            int tempnum = num;
-            while(tempnum){
-                if(nextnext == -1){
-                    nextnext = tempnum % 10;
-                }else if(next == -1){
-                    next = tempnum % 10;
-                }else{
-                    int cur = tempnum%10;
-                    if((cur < next && next > nextnext)||
-                        (cur > next && next <nextnext))
-                        waviness++;
-                    nextnext = next;
-                    next = cur;
-                }
-                tempnum /= 10;
-            }
+            //valley
+            if(s[i]<s[i-1] && s[i] < s[i+1]) score++;
         }
-        return waviness;
+        return score;
     }
+
+    int totalWaviness(int num1, int num2) {
+        int score = 0;
+
+        for(int num = num1; num<=num2; num++){
+            score += findWaiveScore(num);
+        }
+        return score;
+    }
+    
 };

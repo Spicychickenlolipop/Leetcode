@@ -1,33 +1,50 @@
 class Solution {
 public:
-    void fun(int idx,string digits, string &diary, vector<string>&res,unordered_map<char,string>&f){
-        if(idx==digits.size()){
+    unordered_map<char,string> mp = {
+        {'2',"abc"},
+        {'3',"def"},
+        {'4',"ghi"},
+        {'5',"jkl"},
+        {'6',"mno"},
+        {'7',"pqrs"},
+        {'8',"tuv"},
+        {'9',"wxyz"}
+    };
+
+    void fun(string &digits, int n, int idx,
+             string &diary,
+             vector<string> &res) {
+
+        if(idx == n) {
             res.push_back(diary);
             return;
         }
-        string choice=f[digits[idx]];
-        for(int j=0;j<choice.size();j++){
-            diary.push_back(choice[j]);
-            fun(idx+1,digits,diary,res,f);
-            diary.pop_back();
+
+        string choice = mp[digits[idx]];
+
+        for(int j = 0; j < choice.size(); j++) {
+
+            diary.push_back(choice[j]);      // choose
+
+            fun(digits, n, idx + 1,
+                diary, res);                 // explore
+
+            diary.pop_back();                // unchoose
         }
-        return;
     }
+
     vector<string> letterCombinations(string digits) {
-        unordered_map<char,string>f;
 
-        f['2']="abc";
-        f['3']="def";
-        f['4']="ghi";
-        f['5']="jkl";
-        f['6']="mno";
-        f['7']="pqrs";
-        f['8']="tuv";
-        f['9']="wxyz";
+        if(digits.empty())
+            return {};
 
-        string diary="";
-        vector<string>res;
-        fun(0,digits,diary,res,f);
+        int n = digits.size();
+
+        vector<string> res;
+        string diary = "";
+
+        fun(digits, n, 0, diary, res);
+
         return res;
     }
 };

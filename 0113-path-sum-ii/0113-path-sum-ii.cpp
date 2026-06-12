@@ -13,8 +13,7 @@ class Solution {
 public:
     vector<vector<int>> res;
 
-    void fun(TreeNode* root, int sum,
-             int targetSum, vector<int>& diary)
+    void fun(TreeNode* root, int sum, int targetSum, vector<int>& diary)
     {
         if(root == NULL)
             return;

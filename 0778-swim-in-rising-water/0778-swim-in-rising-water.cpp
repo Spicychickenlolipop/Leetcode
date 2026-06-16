@@ -13,7 +13,12 @@ public:
             greater<pair<int,pair<int,int>>>>pq;
         int x[4]={1,-1,0,0};
         int y[4]={0,0,1,-1};
-        vector<vector<int>>res(n, vector<int>(m,1e8));
+        vector<vector<int>>res(n);
+        int i,j;
+        for(i=0;i<n;i++){
+            vector<int>t(m,1e8);
+            res[i] = t;
+        }
         pq.push({grid[0][0],{0,0}});
         res[0][0]=grid[0][0];
         while(!pq.empty()){

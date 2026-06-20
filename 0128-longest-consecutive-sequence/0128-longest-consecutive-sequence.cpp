@@ -22,7 +22,7 @@
 // };
 
 
-class Solution {//nlogn
+class Solution {//TC:O(n)  SC:O(n)
 public:
     int longestConsecutive(vector<int>& nums) {
         int n = nums.size();

@@ -51,28 +51,55 @@
 //     }
 // };
 
+// approach 3
 
-
-//approach 2
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
-        unordered_set<string> st;
-        for(int i=0;i<9;i++){
-            for(int j=0;j<9;j++){
-                if(board[i][j]=='.')continue;
-
-                string row = string(1, board[i][j]) + "_ROW_" + to_string(i);
-                string col = string(1, board[i][j]) + "_COL_" + to_string(j);
-                string box = string(1, board[i][j]) + "_box_" + to_string(i/3)+"_"+to_string(j/3);
-
-                if(st.find(row)!=st.end() || st.find(col) != st.end() || st.find(box) != st.end())
-                    return false;
-                st.insert(row);
-                st.insert(col);
-                st.insert(box);
+        bool row[9][9] = {0};
+        bool col[9][9] = {0};
+        bool box[9][9] = {0};
+        for(int i = 0; i<9; i++) {
+            for(int j = 0; j<9; j++) {
+                if(board[i][j] == '.') continue;
+                
+                int digit     = board[i][j] - '0' - 1; //(-1 to avoid overflow in index)
+                
+                //we have numbered 9 boxes of (3*3) as 0, 1, 2, 3, 4 ... 9 (see the diagram below)
+                int boxIndex  = (i/3)*3 + (j/3);
+                
+                if(row[i][digit] || col[j][digit] || box[boxIndex][digit]) return false;
+                row[i][digit]        = true;
+                col[j][digit]        = true;
+                box[boxIndex][digit] = true;
+                
             }
         }
+        
         return true;
     }
 };
+
+// //approach 2
+// class Solution {
+// public:
+//     bool isValidSudoku(vector<vector<char>>& board) {
+//         unordered_set<string> st;
+//         for(int i=0;i<9;i++){
+//             for(int j=0;j<9;j++){
+//                 if(board[i][j]=='.')continue;
+
+//                 string row = string(1, board[i][j]) + "_ROW_" + to_string(i);
+//                 string col = string(1, board[i][j]) + "_COL_" + to_string(j);
+//                 string box = string(1, board[i][j]) + "_box_" + to_string(i/3)+"_"+to_string(j/3);
+
+//                 if(st.find(row)!=st.end() || st.find(col) != st.end() || st.find(box) != st.end())
+//                     return false;
+//                 st.insert(row);
+//                 st.insert(col);
+//                 st.insert(box);
+//             }
+//         }
+//         return true;
+//     }
+// };

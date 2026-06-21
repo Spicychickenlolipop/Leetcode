@@ -39,43 +39,76 @@
 
 
 
- class MinStack { //tc: O(1) sc: O(2*n)
-public:
-    stack<long long> s;
-    long long int minVal;
-    MinStack() {
+// class MinStack { //tc: O(1) sc: O(2*n)
+// public:
+//     stack<long long> s;
+//     long long int minVal;
+//     MinStack() {
         
-    }
+//     }
     
-    void push(int value) {
-        if(s.empty()){
-            s.push(value);
-            minVal = value;
-        }else{
-            if(value<minVal){
-                s.push((long long) 2*value-minVal);
-                minVal = value;
-            }else{
-                s.push(value);
-            }
+//     void push(int value) {
+//         if(s.empty()){
+//             s.push(value);
+//             minVal = value;
+//         }else{
+//             if(value<minVal){
+//                 s.push((long long) 2*value-minVal);
+//                 minVal = value;
+//             }else{
+//                 s.push(value);
+//             }
+//         }
+//     }
+    
+//     void pop() {
+//         if(s.top()<minVal){
+//             minVal = 2*minVal - s.top();
+//         }
+//         s.pop();
+//     }
+    
+//     int top() {
+//         if(s.top()<minVal){
+//             return minVal;
+//         }
+//         return s.top();
+//     }
+    
+//     int getMin() {
+//         return minVal;
+//     }
+// };
+
+
+
+// for Interview
+
+class MinStack {
+public:
+    stack<int> st;
+    stack<int> minSt;
+
+    void push(int val) {
+        st.push(val);
+
+        if(minSt.empty() || val <= minSt.top()) {
+            minSt.push(val);
         }
     }
-    
+
     void pop() {
-        if(s.top()<minVal){
-            minVal = 2*minVal - s.top();
+        if(st.top() == minSt.top()) {
+            minSt.pop();
         }
-        s.pop();
+        st.pop();
     }
-    
+
     int top() {
-        if(s.top()<minVal){
-            return minVal;
-        }
-        return s.top();
+        return st.top();
     }
-    
+
     int getMin() {
-        return minVal;
+        return minSt.top();
     }
 };

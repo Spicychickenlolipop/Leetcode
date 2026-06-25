@@ -21,27 +21,52 @@
 //Approach-2 (Brute Force Prefix Sum) - PART I Accepted, PART II TLE
 //T.C : O(n^2)
 //S.C : O(1)
-class Solution{
+// class Solution{
+// public:
+//     int countMajoritySubarrays(vector<int>& nums,int target){
+//         int n = nums.size();
+//         for(int i = 0; i < n; i++){
+//             if(nums[i]==target)
+//                 nums[i]=1;
+//             else
+//                 nums[i]=-1;
+//         }
+//         for(int i=1;i<n;i++){
+//             nums[i] += nums[i-1];
+//         }
+//         long long ans = 0;
+//         for(int l =0;l<n;l++){
+//             for(int r=l;r<n;r++){
+//                 int sum = nums[r]-((l>0)? nums[l-1]:0);
+//                 if(sum>0)
+//                     ans++;
+//             }
+//         }
+//         return ans;
+//     }
+// };
+//Approach-3 (Optimal Using Map) PART I Accepted, PART II TLE (Instead of map you can use an array of size 2*n+1 as well because we can have cumulaive sum from -n to +n)
+//T.C : O(n)
+//S.C : O(n)
+class Solution {
 public:
-    int countMajoritySubarrays(vector<int>& nums,int target){
-        int n = nums.size();
-        for(int i = 0; i < n; i++){
-            if(nums[i]==target)
-                nums[i]=1;
-            else
-                nums[i]=-1;
-        }
-        for(int i=1;i<n;i++){
-            nums[i] += nums[i-1];
-        }
-        long long ans = 0;
-        for(int l =0;l<n;l++){
-            for(int r=l;r<n;r++){
-                int sum = nums[r]-((l>0)? nums[l-1]:0);
-                if(sum>0)
-                    ans++;
+    long long countMajoritySubarrays(vector<int>& nums, int target) {
+        unordered_map<int,int>mp;
+        int currSum = 0;
+        mp[0]=1;
+        long long validLeftPoints = 0;
+        long long result = 0;
+        for(int x:nums){
+            if(x==target){
+                validLeftPoints+=mp[currSum];
+                currSum++;
+            }else{
+                currSum--;
+                validLeftPoints -= mp[currSum];
             }
+            mp[currSum]++;
+            result += validLeftPoints;
         }
-        return ans;
+        return result;
     }
 };

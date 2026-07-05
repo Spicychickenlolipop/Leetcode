@@ -1,5 +1,6 @@
+//Approach-1 (Recursion + Memoization)  T.C : O(n^2)  S.C : O(n^2)
 class Solution {
-
+public:
     int n;
     int MOD = 1e9+7;
     vector<vector<pair<int,int>>>t;
@@ -76,7 +77,7 @@ class Solution {
         return t[i][j];
 
     }
-public:
+
     vector<int> pathsWithMaxScore(vector<string>& board) {
         n = board.size();
         t.assign(n,vector<pair<int,int>>(n, {-1, -1}));

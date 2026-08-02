@@ -1,31 +1,76 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+// /**
+//  * Definition for singly-linked list.
+//  * struct ListNode {
+//  *     int val;
+//  *     ListNode *next;
+//  *     ListNode(int x) : val(x), next(NULL) {}
+//  * };
+//  */
+// class Solution {
+// public:
+//     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+//         ListNode* tempA = headA;
+//         ListNode* tempB = headB;
+
+//         while(true){
+//             if(tempA == tempB)
+//                 return tempA;
+//             if(tempA)
+//                 tempA = tempA->next;
+//             else
+//                 tempA = headA;
+            
+//             if(tempB)
+//                 tempB = tempB->next;
+//             else
+//                 tempB = headB;
+            
+//         }
+//         return NULL;
+//     }
+// };
+
+
+//Approach-2
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int sizeA = 0;
+        int sizeB = 0;
+        
         ListNode* tempA = headA;
         ListNode* tempB = headB;
-
-        while(true){
-            if(tempA == tempB)
-                return tempA;
-            if(tempA)
-                tempA = tempA->next;
-            else
-                tempA = headA;
-            
-            if(tempB)
-                tempB = tempB->next;
-            else
-                tempB = headB;
-            
+        
+        while(tempA) {
+            sizeA++;
+            tempA = tempA->next;
         }
-        return NULL;
+        while(tempB) {
+            sizeB++;
+            tempB = tempB->next;
+        }
+        tempA = headA;
+        tempB = headB;
+        int diff = abs(sizeA-sizeB);
+        if(sizeA > sizeB) {
+            tempB = headB;
+            while(diff > 0 && tempA) {
+                tempA = tempA->next;
+                diff--;
+            }
+        } else {
+            tempA = headA;
+            while(diff > 0 && tempB) {
+                tempB = tempB->next;
+                diff--;
+            }
+        }
+        
+        while(tempA && tempB && tempA != tempB) {
+            tempA = tempA->next;
+            tempB = tempB->next;
+        }
+        
+        return tempA;
     }
 };

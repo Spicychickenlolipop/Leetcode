@@ -5,10 +5,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0056-merge-intervals](https://github.com/Spicychickenlolipop/Leetcode/tree/master/0056-merge-intervals) |
+| [3394-check-if-grid-can-be-cut-into-sections](https://github.com/Spicychickenlolipop/Leetcode/tree/master/3394-check-if-grid-can-be-cut-into-sections) |
 ## Sorting
 |  |
 | ------- |
 | [0056-merge-intervals](https://github.com/Spicychickenlolipop/Leetcode/tree/master/0056-merge-intervals) |
+| [3394-check-if-grid-can-be-cut-into-sections](https://github.com/Spicychickenlolipop/Leetcode/tree/master/3394-check-if-grid-can-be-cut-into-sections) |
 ## Quicksort
 |  |
 | ------- |

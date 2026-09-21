@@ -4,6 +4,12 @@ public:
         int m = matrix.size();//row
         int n = matrix[0].size();//columns
 
+        
+        int left = 0;
+        int right = n - 1;
+        int top = 0;
+        int down = m - 1;
+        
         int dir = 0;
 
         /*
@@ -12,11 +18,6 @@ public:
             dir = 2 : right to left
             dir = 3 : down to top
         */
-        int left = 0;
-        int right = n - 1;
-        int top = 0;
-        int down = m - 1;
-
         vector<int>result;
         while(left <= right && top <= down){
             if(dir==0){

@@ -24,4 +24,16 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0054-spiral-matrix](https://github.com/Spicychickenlolipop/Leetcode/tree/master/0054-spiral-matrix) |
+## String
+|  |
+| ------- |
+| [1021-remove-outermost-parentheses](https://github.com/Spicychickenlolipop/Leetcode/tree/master/1021-remove-outermost-parentheses) |
+## Stack
+|  |
+| ------- |
+| [1021-remove-outermost-parentheses](https://github.com/Spicychickenlolipop/Leetcode/tree/master/1021-remove-outermost-parentheses) |
+## Bracket Sequences
+|  |
+| ------- |
+| [1021-remove-outermost-parentheses](https://github.com/Spicychickenlolipop/Leetcode/tree/master/1021-remove-outermost-parentheses) |
 <!---LeetCode Topics End-->

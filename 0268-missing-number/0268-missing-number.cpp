@@ -1,16 +1,15 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
+        long long n = nums.size();
 
-        int n = nums.size();
+        long long expectedSum = n * (n + 1) / 2;
+        long long actualSum = 0;
 
-        for (int i = 0; i < n; i++) {
-            if (nums[i] != i) {
-                return i;
-            }
+        for (int num : nums) {
+            actualSum += num;
         }
 
-        return n;
+        return static_cast<int>(expectedSum - actualSum);
     }
 };
